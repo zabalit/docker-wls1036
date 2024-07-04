@@ -1,4 +1,4 @@
-# Docker Image cheloide/wls1036
+# Docker Image zabalit/wls1036
 
 Docker image with a Weblogic Server 10.3.6 Running and a Domain with standard ports.
 
@@ -13,7 +13,7 @@ Since you're downloading the files from oracle servers you'll need an Oracle Acc
 Initial Setup
 ------
 
-Put the files `wls1036_generic.jar`  and `dk-6u45-linux-x64.bin` you previously downloaded inside the assets assets directory.
+Put the files `wls1036_generic.jar`  and `jdk-6u45-linux-x64.bin` you previously downloaded inside the assets assets directory.
 
 
 Build and Run
@@ -22,12 +22,19 @@ Build and Run
 To build the image just run
 
 ```
-docker build --rm -t cheloide/wls1036 /path/to/Dockerfile/folder/
+docker build -t zabalit/wls1036 .
 ```
 
 To deploy the image run:
 ```
-docker run cheloide/wls1036 -p 7001:7001 -p 7002:7002 -p 8001:8001 -p 5556:5556
+docker run -d \
+    --name wls1036 \
+    -v $(pwd)/domain/base_domain:/opt/oracle/wls1036/user_projects/domains/base_domain \
+    -p 7001:7001 \
+    -p 7002:7002 \
+    -p 8001:8001 \
+    -p 5556:5556 \
+    zabalit/wls1036
 ```
 the previous command have the default ports for the weblogic server 10.3.6 set up
 
