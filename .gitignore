@@ -1,4 +1,4 @@
 assets/wls1036_generic.jar
 assets/jdk-6u45-linux-x64.bin
-domain
-domain/base_domain
+
+/domain/
