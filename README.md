@@ -22,7 +22,7 @@ Build and Run
 To build the image just run
 
 ```
-docker build -t zabalit/wls1036 .
+docker build -t zabalit/wls1036:3 .
 ```
 
 To deploy the image run:
@@ -30,12 +30,13 @@ To deploy the image run:
 docker run -d \
     --name wls1036 \
     -v $(pwd)/domain/base_domain:/opt/oracle/wls1036/user_projects/domains/base_domain \
-    -p 7001:7001 \
-    -p 7002:7002 \
-    -p 8001:8001 \
-    -p 5556:5556 \
-    zabalit/wls1036
+    -p 17001:7001 \
+    -p 17002:7002 \
+    -p 18001:8001 \
+    -p 15556:5556 \
+    zabalit/wls1036:3
 ```
+
 the previous command have the default ports for the weblogic server 10.3.6 set up
 
 
@@ -58,3 +59,17 @@ you can change the defaults by modifying the file `/assets/wlsdomain.py`, [this 
 - **7002** Oracle WebLogic Server SSL Listen Port for Administration Server
 - **8001** Oracle WebLogic Server Listen Port for Managed Server
 - **5556** Oracle WebLogic Server Node Manager Port
+
+
+# Patch WLS
+
+1. Copiar los archivos del parche a:
+
+```
+/opt/oracle/utils/bsu/cache_dir
+```
+2. Aplicar el parche
+```
+cd /opt/oracle/utils/bsu
+./bsu.sh -prod_dir=/opt/oracle/wls1036 -patchlist=7BWI -install
+```

@@ -2,6 +2,8 @@
 
 DOMAIN_PATH="/opt/oracle/wls1036/user_projects/domains/base_domain"
 
+chown -R oracle:oracle /opt/oracle/wls1036/user_projects/domains/base_domain
+
 function startWLS() {
     $DOMAIN_PATH/bin/startWebLogic.sh &
 }

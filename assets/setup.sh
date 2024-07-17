@@ -6,7 +6,7 @@ chmod +x /assets/jdk-6u45-linux-x64.bin
 cd /opt/java && /assets/jdk-6u45-linux-x64.bin
 
 #set up user oracle
-adduser --disabled-password --gecos "" --shell /bin/bash oracle
+adduser --uid 1001 --disabled-password --gecos "" --shell /bin/bash oracle
 mkdir -p /opt/oracle/
 chown -R oracle /opt/oracle/
 mv /assets/entrypoint.sh /entrypoint.sh
